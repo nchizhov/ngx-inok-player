@@ -1,0 +1,31 @@
+<div class="audio-container">
+  <div class="audio-body">
+    <div class="audio-play-pause"
+         (click)="onPlayPause()"
+         [ngClass]="{
+          'play': audio.paused,
+          'pause': !audio.paused,
+          'not-exists': audioError}"></div>
+    <div class="audio-time audio-time-play" [class.not-exists]="audioError">{{duration | audioTime}}</div>
+    <ng-container *ngIf="audioExists">
+      <div class="audio-time audio-time-delimiter" *ngIf="currentTime !== null">/</div>
+      <div class="audio-time audio-time-duration">{{currentTime | audioTime}}</div>
+    </ng-container>
+    <div class="audio-download" *ngIf="!audioError" (click)="onDownload()"></div>
+    <ng-container *ngIf="audioExists">
+      <div class="audio-progress-volume">
+        <input class="audio-range" type="range" min="0.0" max="1.0" step="0.1" title="Громкость"
+               [(ngModel)]="audio.volume">
+      </div>
+      <div class="audio-volume volume"
+           [class.mute]="audio.volume === 0"
+           (click)="onMute()"></div>
+    </ng-container>
+    <div class="audio-progress"
+         [class.not-exists]="audioError">
+      <input class="audio-range" type="range" min="0.0" max="100.0" step="0.1" title="Положение"
+             [(ngModel)]="rangeProgressValue"
+             (ngModelChange)="onProgress()">
+    </div>
+  </div>
+</div>

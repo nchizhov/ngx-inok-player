@@ -16,6 +16,14 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "ngx-inok-player": [
+        "dist/ngx-inok-player"
+      ],
+      "ngx-inok-player/*": [
+        "dist/ngx-inok-player/*"
+      ]
+    }
   }
 }

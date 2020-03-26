@@ -1,0 +1,19 @@
+@font-face {
+  font-family: 'fontello';
+  src: url('fonts/fontello.eot?49308517');
+  src: url('fonts/fontello.eot?49308517#iefix') format('embedded-opentype'),
+  url('fonts/fontello.woff2?49308517') format('woff2'),
+  url('fonts/fontello.woff?49308517') format('woff'),
+  url('fonts/fontello.ttf?49308517') format('truetype'),
+  url('fonts/fontello.svg?49308517#fontello') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+/* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
+/* Note, that will break hinting! In other OS-es font will be not as sharp as it could be */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: 'fontello';
+    src: url('fonts/fontello.svg?49308517#fontello') format('svg');
+  }
+}

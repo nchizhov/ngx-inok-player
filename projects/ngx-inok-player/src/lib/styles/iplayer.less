@@ -1,0 +1,144 @@
+.audio-container {
+  width: 100%;
+
+  > .audio-body {
+    height: 32px;
+    background-color: transparent;
+
+    .not-exists {
+      opacity: 0.4;
+    }
+
+    .audio-download {
+      font-family: "fontello";
+      font-size: 17px;
+      color: #5a5a5a;
+      margin-top: 5px;
+      width: 32px;
+      cursor: pointer;
+      float: right;
+
+      &:before {
+        content: "\e804";
+      }
+    }
+
+    > .audio-play-pause {
+      width: 32px;
+      cursor: pointer;
+      float: left;
+      margin-top: 5px;
+      font-family: "fontello";
+      font-size: 17px;
+      color: #5a5a5a;
+
+      &.play:before {
+        content: "\e801";
+      }
+
+      &.pause:before {
+        content: "\e802";
+      }
+    }
+
+    > .audio-time {
+      height: 32px;
+      float: left;
+      font-size: 12px;
+      overflow: auto;
+      min-height: 32px;
+      max-height: 32px;
+    }
+
+    > .audio-time-play, > .audio-time-duration {
+      padding-top: 8px;
+      padding-bottom: 0;
+    }
+
+    > .audio-time-delimiter {
+      padding: 8px 4px 0 4px;
+    }
+
+    > .audio-progress {
+      height: 32px;
+      overflow: auto;
+      padding: 0 5px 0 10px;
+    }
+
+    > .audio-volume {
+      width: 32px;
+      cursor: pointer;
+      float: right;
+      font-family: "fontello";
+      font-size: 17px;
+      color: #5a5a5a;
+      margin-top: 5px;
+
+      &.volume:before {
+        content: "\e800";
+      }
+
+      &.mute:before {
+        content: "\e803";
+      }
+    }
+
+    > .audio-progress-volume {
+      height: 32px;
+      padding: 0 12px 0 5px;
+      width: 105px;
+      float: right;
+    }
+  }
+}
+
+input[type=range] {
+  &.audio-range {
+    -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
+    width: 100%; /* Specific width is required for Firefox. */
+    background: none; /* Otherwise white in Chrome */
+    margin-top: 9px;
+
+    &:focus {
+      outline: none; /* Removes the border. You should probably do some kind of focus styling for accessibility reasons though. */
+    }
+
+    &::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      height: 12px;
+      width: 12px;
+      border-radius: 6px;
+      background: #3689ef;
+      cursor: pointer;
+      margin-top: -5px;
+    }
+
+    &::-webkit-slider-runnable-track {
+      width: 100%;
+      height: 2px;
+      cursor: pointer;
+      background: #3689ef;
+      margin-top: 6px;
+    }
+
+    &::-moz-range-thumb {
+      height: 12px;
+      width: 12px;
+      border-radius: 6px;
+      background: #3689ef;
+      cursor: pointer;
+    }
+
+    &::-moz-range-track {
+      width: 100%;
+      height: 2px;
+      cursor: pointer;
+      background: lightgray;
+    }
+
+    &::-moz-range-progress {
+      background-color: #3689ef;
+      height: 2px;
+    }
+  }
+}

@@ -1,0 +1,58 @@
+table {
+  > thead {
+    background-color: #eee;
+  }
+
+  th, td {
+    vertical-align: middle !important;
+    font-size: 12px;
+  }
+}
+
+/**
+  .alt-danger tables
+ */
+@alt-danger-color: #f2e9b6;
+@alt-danger-hover-color: #ebd8a5;
+
+.table {
+  > thead, > tbody, > tfoot {
+    > tr {
+      > td, > th  {
+        &.alt-danger {
+          background-color: @alt-danger-color;
+        }
+      }
+
+      &.alt-danger {
+        > td, > th {
+          background-color: @alt-danger-color;
+        }
+      }
+    }
+  }
+}
+
+.table-hover {
+  > tbody {
+    > tr {
+      > td, > th {
+        &.alt-danger:hover {
+          background-color: @alt-danger-hover-color;
+        }
+      }
+
+      &.alt-danger:hover {
+        > td, > th {
+          background-color: @alt-danger-hover-color;
+        }
+      }
+
+      &:hover {
+        > .alt-danger {
+          background-color: @alt-danger-hover-color;
+        }
+      }
+    }
+  }
+}
