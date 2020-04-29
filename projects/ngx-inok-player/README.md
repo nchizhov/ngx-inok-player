@@ -1,6 +1,6 @@
 ## Installation
 ```bash
-npm i ngx-inok-player --save
+npm i @inok/ngx-inok-player --save
 ```
 
 ## Documentation
@@ -11,7 +11,7 @@ npm i ngx-inok-player --save
 
 ### Inputs (Properties)
 
--  `file` (`string` | `File` | `Function`) - Source of audio-file
+-  `file` (`string` | `File` | `<Promise<File>>Function`) - Source of audio-file
 -  `fileName` (`?string`) - Set filename for download audio-file (If not set, try parse from `file`)
 -  `autoplay` (`?boolean`) - Autoplay of audio-file (default: `false`)
 -  `loop` (`?boolean`) - Auto loop of audio-file (default: `false`)

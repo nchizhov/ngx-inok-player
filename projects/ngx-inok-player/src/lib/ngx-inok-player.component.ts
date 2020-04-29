@@ -2,6 +2,7 @@ import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import { saveAs } from 'file-saver';
 
 import {NgxInokPlayerService} from './ngx-inok-player.service';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'ngx-inok-player',
@@ -45,15 +46,20 @@ export class NgxInokPlayerComponent implements OnInit, OnDestroy {
     if (this.audioError) {
       return;
     }
-    this.audioSrc();
-    if (this.audio.paused) {
-      this.playerService.switchAudio(this.group);
-      this.audio.play().then(() => {
-        this.audioExists = true;
-      }).catch(this.playError.bind(this));
-    } else {
-      this.audio.pause();
-    }
+    this.audioSrc().then(
+      () => {
+        if (this.audio.paused) {
+          this.playerService.switchAudio(this.group);
+          this.audio.play().then(() => {
+            this.audioExists = true;
+          }).catch(this.playError.bind(this));
+        } else {
+          this.audio.pause();
+        }
+      },
+      () => this.playError()
+    );
+
   }
 
   onProgress() {
@@ -78,12 +84,16 @@ export class NgxInokPlayerComponent implements OnInit, OnDestroy {
       saveAs(this.audio.currentSrc);
       return;
     }
-    this.audioSrc();
-    this.audio.play().then(() => {
-      this.audioExists = true;
-      this.audio.pause();
-      saveAs(this.audio.currentSrc, this.downloadFileName);
-    }).catch(this.playError.bind(this));
+    this.audioSrc().then(
+      () => {
+        this.audio.play().then(() => {
+          this.audioExists = true;
+          this.audio.pause();
+          saveAs(this.audio.currentSrc, this.downloadFileName);
+        }).catch(this.playError.bind(this));
+      },
+      () => this.playError()
+    );
   }
 
   private audioBuild() {
@@ -103,25 +113,46 @@ export class NgxInokPlayerComponent implements OnInit, OnDestroy {
     };
   }
 
-  private audioSrc() {
-    if (this.audioSrcInit) {
-      return;
-    }
-    if (typeof this.file === 'string') {
-      this.downloadFileName = this.file.substring(this.file.lastIndexOf('/') + 1);
-      this.audio.src = <string>this.file;
-    } else {
-      let file: any = null;
-      if (this.file instanceof Function) {
-        file = this.file();
-      } else if (this.file instanceof File) {
-        file = this.file;
-      }
-      if (file !== null && file instanceof File) {
-        this.downloadFileName = file.name;
-        this.audio.src = window.URL.createObjectURL(file);
-      }
-    }
+  private audioSrc(): Promise<any> {
+    return new Promise<any>(
+      (resolve, reject) => {
+        if (this.audioSrcInit) {
+          resolve();
+          return;
+        }
+        if (typeof this.file === 'string') {
+          this.downloadFileName = this.file.substring(this.file.lastIndexOf('/') + 1);
+          this.audio.src = <string>this.file;
+          this.addAudio();
+          resolve();
+          return;
+        }
+        if (this.file instanceof File) {
+          this.downloadFileName = this.file.name;
+          this.audio.src = window.URL.createObjectURL(this.file);
+          this.addAudio();
+          resolve();
+          return;
+        }
+        if (this.file instanceof Function) {
+          (<Promise<File>>this.file()).then(
+            (file: File) => {
+              if (!(file instanceof File)) {
+                reject();
+                return;
+              }
+              this.downloadFileName = file.name;
+              this.audio.src = window.URL.createObjectURL(file);
+              this.addAudio();
+              resolve();
+            });
+          return;
+        }
+        reject();
+      });
+  }
+
+  private addAudio() {
     if (this.fileName) {
       this.downloadFileName = this.fileName;
     }
