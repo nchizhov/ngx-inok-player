@@ -13,7 +13,7 @@ export class AudioTimePipe implements PipeTransform {
       return '';
     }
     const minutes: number = Math.floor(time / 60);
-    const seconds: string = ('0' + Math.round(time % 60)).slice(-2);
+    const seconds: string = ('0' + Math.floor(time % 60)).slice(-2);
     return `${minutes}:${seconds}`;
   }
 }

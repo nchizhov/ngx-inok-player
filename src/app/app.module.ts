@@ -13,6 +13,8 @@ import {NgxInokPlayerModule} from '../../projects/ngx-inok-player/src/lib/ngx-in
     NgxInokPlayerModule.forRoot()
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [
+    AppComponent
+  ]
 })
 export class AppModule { }

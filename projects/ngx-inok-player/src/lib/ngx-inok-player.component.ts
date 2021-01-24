@@ -2,7 +2,6 @@ import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import { saveAs } from 'file-saver';
 
 import {NgxInokPlayerService} from './ngx-inok-player.service';
-import {Observable} from 'rxjs';
 
 @Component({
   selector: 'ngx-inok-player',
