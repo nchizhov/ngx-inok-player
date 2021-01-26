@@ -19,7 +19,7 @@ import {NgxInokPlayerService} from './ngx-inok-player.service';
   exports: [NgxInokPlayerComponent]
 })
 export class NgxInokPlayerModule {
-  static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders<NgxInokPlayerModule> {
     return {
       ngModule: NgxInokPlayerModule,
       providers: [
