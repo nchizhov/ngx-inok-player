@@ -1,6 +1,6 @@
 {
   "name": "@inok/ngx-inok-player",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Audio Player for Angular",
   "repository": "git@github.com:nchizhov/ngx-inok-player.git",
   "keywords": [
@@ -19,6 +19,6 @@
     "file-saver": "^2.0.5"
   },
   "dependencies": {
-    "tslib": "^1.10.0"
+    "tslib": "^2.0.0"
   }
 }
