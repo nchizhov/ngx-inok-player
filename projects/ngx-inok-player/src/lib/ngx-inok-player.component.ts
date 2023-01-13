@@ -113,7 +113,7 @@ export class NgxInokPlayerComponent implements OnInit, OnDestroy {
   }
 
   private audioSrc(): Promise<any> {
-    return new Promise<any>(
+    return new Promise<void>(
       (resolve, reject) => {
         if (this.audioSrcInit) {
           resolve();
