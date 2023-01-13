@@ -1,6 +1,6 @@
 {
   "name": "@inok/ngx-inok-player",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Audio Player for Angular",
   "repository": "git@github.com:nchizhov/ngx-inok-player.git",
   "keywords": [
@@ -14,11 +14,11 @@
     "url": "https://github.com/nchizhov/ngx-inok-player/issues"
   },
   "peerDependencies": {
-    "@angular/common": "^11.2.14",
-    "@angular/core": "^11.2.14",
+    "@angular/common": "^12.2.00",
+    "@angular/core": "^12.2.00",
     "file-saver": "^2.0.5"
   },
   "dependencies": {
-    "tslib": "^2.0.0"
+    "tslib": "^2.3.0"
   }
 }
